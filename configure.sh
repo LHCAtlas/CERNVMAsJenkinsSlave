@@ -34,6 +34,9 @@ curl -s -o slave.jar $JENKINS_URL/jnlpJars/slave.jar
 # Now, write out the files that are going to control everything when we reboot, run headless, etc.
 
 echo "#!/bin/sh" > jenkins-slave.sh
+echo "# chkconfig: - 91 35" >> jenkins-slave.sh
+echo "# description: Starts and stops the jenkins-build slave service for $JENKINS_URL" >> jenkins-slave.sh
+echo "#" >> jenkins-slave.sh
 echo "# Launch a jenkins build slave" >> jenkins-slave.sh
 echo ". /etc/rc.d/init.d/functions" >> jenkins-slave.sh
 
@@ -70,3 +73,12 @@ echo "    echo Usage: \$0 {start|stop|restart|reload}" >> jenkins-slave.sh
 echo "    exit 1" >> jenkins-slave.sh
 echo "esac" >> jenkins-slave.sh
 echo "exit 0" >> jenkins-slave.sh
+
+chmod a+x jenkins-slave.sh
+
+# Next, the su commands to put this in the right spot, and configure it to always work
+sudo cp $JENKINS_WORKDIR/jenkins-slave.sh /etc/init.d/jenkins-slave
+sudo chkconfig --add jenkins-slave
+sudo chkconfig jenkins-slave on
+
+echo "To start: /etc/init.d/jenkins-slave start"
