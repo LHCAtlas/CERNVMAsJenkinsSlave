@@ -1,3 +1,3 @@
 #!/bin/env bash
 
-ehco hi
+echo hi
