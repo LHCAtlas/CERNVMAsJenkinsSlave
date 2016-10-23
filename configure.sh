@@ -22,8 +22,8 @@ JENKINS_WORKDIR=`pwd`
 echo Downloading Java SE
 [ -e java ] || mkdir java
 cd java
-#curl -L -b "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.tar.gz -O
-#tar -xzf jdk-8u111-linux-x64.tar.gz
+[ -e jdk-8u111-linux-x64.tar.gz ] || curl -L -b "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.tar.gz -O
+[-e jdk1.8.0_111 ] || tar -xzf jdk-8u111-linux-x64.tar.gz
 JAVADIR=`pwd`/jdk1.8.0_111
 cd ..
 
