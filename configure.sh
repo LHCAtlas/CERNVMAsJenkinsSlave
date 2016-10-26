@@ -41,7 +41,7 @@ echo ". /etc/rc.d/init.d/functions" >> jenkins-slave.sh
 echo "start()" >> jenkins-slave.sh
 echo "{" >> jenkins-slave.sh
 echo "  echo -n \"Staring Jenkins BuildSlave: \"" >> jenkins-slave.sh
-echo "  su $USER sh -c \"cd $JENKINS_WORKDIR; export PATH=$JAVADIR/bin:\$PATH; java -jar slave.jar -jnlpUrl $JENKINS_URL/computer/$COMPUTER_NAME/slave-agent.jnlp -secret $SECRET > slave.log 2>&1 &\"" >> jenkins-slave.sh
+echo "  su $USER sh -c \"cd $JENKINS_WORKDIR; export HOME=/home/$USER;  export PATH=$JAVADIR/bin:\$PATH; java -jar slave.jar -jnlpUrl $JENKINS_URL/computer/$COMPUTER_NAME/slave-agent.jnlp -secret $SECRET > slave.log 2>&1 &\"" >> jenkins-slave.sh
 echo "  echo Done." >> jenkins-slave.sh
 echo "}" >> jenkins-slave.sh
 
