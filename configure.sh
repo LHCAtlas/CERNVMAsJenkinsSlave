@@ -48,7 +48,7 @@ echo "}" >> jenkins-slave.sh
 echo "stop()" >> jenkins-slave.sh
 echo "{" >> jenkins-slave.sh
 echo "  echo -n \"Shutting down Jenkins BuildSlave: \"" >> jenkins-slave.sh
-echo "  killall slave.jar" >> jenkins-slave.sh
+echo "  killall java" >> jenkins-slave.sh
 echo "  echo Done." >> jenkins-slave.sh
 echo "}" >> jenkins-slave.sh
 
