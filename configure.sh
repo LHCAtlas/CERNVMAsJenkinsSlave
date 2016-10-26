@@ -8,7 +8,6 @@
 #  SECRET is the horrible hash given to you by the jenkins web page for this computer.
 #
 # Run this from the account you want jenkins to run from!
-
 JENKINS_URL=$1
 COMPUTER_NAME=$2
 SECRET=$3
@@ -19,8 +18,7 @@ cd jenkins
 JENKINS_WORKDIR=`pwd`
 
 # Get java down and loaded
-echo Downloading Java SE
-[ -e java ] || mkdir java
+echo Downloading Java SE[ -e java ] || mkdir java
 cd java
 [ -e jdk-8u111-linux-x64.tar.gz ] || curl -L -b "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.tar.gz -O
 [ -e jdk1.8.0_111 ] || tar -xzf jdk-8u111-linux-x64.tar.gz
@@ -50,7 +48,7 @@ echo "}" >> jenkins-slave.sh
 echo "stop()" >> jenkins-slave.sh
 echo "{" >> jenkins-slave.sh
 echo "  echo -n \"Shutting down Jenkins BuildSlave: \"" >> jenkins-slave.sh
-echo "  killproc slave.jar" >> jenkins-slave.sh
+echo "  killall slave.jar" >> jenkins-slave.sh
 echo "  echo Done." >> jenkins-slave.sh
 echo "}" >> jenkins-slave.sh
 
